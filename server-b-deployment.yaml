@@ -22,7 +22,7 @@ spec:
         io.kompose.service: server-b
     spec:
       containers:
-        - image: mend_server-b:latest
+        - image: 160576/mend_server-b:latest
           name: server-b
           ports:
             - containerPort: 8082
