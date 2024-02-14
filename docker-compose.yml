@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  server-b:
+    build:
+      context: ./dataService
+    ports:
+      - "8082:8082"  # Map container port 8082 to host port 8082
+    depends_on:
+      - postgres
+
+  server-a:
+    build:
+      context: ./users
+    ports:
+      - "8081:8081"  # Map container port 8081 to host port 8081
+    depends_on:
+      - postgres
